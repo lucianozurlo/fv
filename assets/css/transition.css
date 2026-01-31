@@ -184,29 +184,3 @@
     animation: none !important;
   }
 }
-
-/* ============================================================
-   Retina desktop: eliminar "white gap" final y sincronizar alturas
-   Activo SOLO cuando JS agrega: html.ui-retina-scale
-   ============================================================ */
-
-html.ui-retina-scale {
-  /* JS setea --ui-doc-h en px (alto real sin escala) */
-  height: var(--ui-doc-h) !important;
-  min-height: 0 !important;
-}
-
-html.ui-retina-scale body {
-  height: var(--ui-doc-h) !important;
-  min-height: 0 !important;
-  /* evita que un min-height heredado “pise” el fix */
-}
-
-html.ui-retina-scale #body-inner {
-  height: var(--ui-doc-h) !important;
-  min-height: 0 !important;
-
-  /* corta la causa típica de “margin-collapse” del último hijo
-     (sin tocar sticky/fixed) */
-  display: flow-root;
-}
