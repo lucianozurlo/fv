@@ -338,7 +338,7 @@
     margin-bottom: 24px;
   }
   footer .socials {
-    transform: translateX(-12.8px);
+    /* transform: translateX(-12.8px); */
     gap: 6.4px;
   }
   footer .socials a {

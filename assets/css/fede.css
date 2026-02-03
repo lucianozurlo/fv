@@ -919,7 +919,7 @@ footer .socials {
   margin-bottom: 30px;
 }
 footer .socials {
-  transform: translateX(-16px);
+  /* transform: translateX(-16px); */
   gap: 8px;
 }
 footer .socials a {
