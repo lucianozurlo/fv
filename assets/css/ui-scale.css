@@ -1,0 +1,57 @@
+/* /assets/css/ui-scale.css
+   Freeze + escala proporcional (sin zoom)
+   - Se activa con: html.ui-scale-on
+   - Variables seteadas por JS:
+     --uiBaseW (number)
+     --uiScale (0..1)
+     --uiScaleInv (>=1)
+     --uiVh (px con unidad)
+*/
+
+:root {
+  --uiBaseW: 1730;     /* number */
+  --uiScale: 1;        /* number */
+  --uiScaleInv: 1;     /* number */
+  --uiVh: 100vh;       /* unit (fallback) */
+}
+
+/* ON sólo desktop (>960). El JS pone/saca esta clase */
+html.ui-scale-on {
+  overflow-x: hidden;
+}
+
+/* Root escalable (tu viewport desktop) */
+html.ui-scale-on #scroll-container {
+  /* Freeze a baseW */
+  width: calc(var(--uiBaseW) * 1px);
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Escala proporcional */
+  transform-origin: top center;
+  transform: scale(var(--uiScale));
+  will-change: transform;
+
+  /* Evitar scroll horizontal residual */
+  overflow-x: hidden;
+}
+
+/* Scroll/altura sin clipping:
+   compenso el alto del scroller para que el alto VISUAL quede igual al viewport. */
+html.ui-scale-on body.tt-smooth-scroll:not(.is-mobile) #scroll-container {
+  height: calc(var(--uiVh) * var(--uiScaleInv));
+}
+
+/* Si querés que el fondo “sobrante” a los lados no genere barras */
+html.ui-scale-on body {
+  overflow-x: hidden;
+}
+
+/* Patrón opcional:
+   Para “neutralizar” la escala en un nodo dentro de #scroll-container,
+   envolvelo en un wrapper y poné data-ui-no-scale en el wrapper.
+   (Ojo: si ese wrapper ya usa transform por otra cosa, conviene wrapper extra.) */
+html.ui-scale-on #scroll-container [data-ui-no-scale] {
+  transform: scale(var(--uiScaleInv));
+  transform-origin: top left;
+}
