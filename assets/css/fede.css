@@ -95,9 +95,6 @@
 }
 
 /* SCROLL */
-.scrollbar-track {
-  display: none !important;
-}
 .scroll {
   display: flex;
   flex-direction: column;

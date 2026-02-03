@@ -1,7 +1,6 @@
 /* /assets/css/ui-scale.css
    Freeze + escala proporcional (sin zoom)
    - Se activa con: html.ui-scale-on
-   - Transición suave SOLO en toggles con: html.ui-scale-anim
    - Variables seteadas por JS:
      --uiBaseW (number)
      --uiScale (0..1)
@@ -16,7 +15,7 @@
   --uiVh: 100vh;       /* unit (fallback) */
 }
 
-/* ON sólo desktop. El JS pone/saca esta clase */
+/* ON sólo desktop (>960). El JS pone/saca esta clase */
 html.ui-scale-on {
   overflow-x: hidden;
 }
@@ -43,21 +42,15 @@ html.ui-scale-on body.tt-smooth-scroll:not(.is-mobile) #scroll-container {
   height: calc(var(--uiVh) * var(--uiScaleInv));
 }
 
+/* Si querés que el fondo “sobrante” a los lados no genere barras */
 html.ui-scale-on body {
   overflow-x: hidden;
-}
-
-/* Transición suave SOLO durante el toggle ON/OFF (evita jank en resize continuo) */
-@media (prefers-reduced-motion: no-preference) {
-  html.ui-scale-anim #scroll-container {
-    transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
 }
 
 /* Patrón opcional:
    Para “neutralizar” la escala en un nodo dentro de #scroll-container,
    envolvelo en un wrapper y poné data-ui-no-scale en el wrapper.
-*/
+   (Ojo: si ese wrapper ya usa transform por otra cosa, conviene wrapper extra.) */
 html.ui-scale-on #scroll-container [data-ui-no-scale] {
   transform: scale(var(--uiScaleInv));
   transform-origin: top left;
