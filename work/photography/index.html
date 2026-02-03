@@ -39,16 +39,7 @@
       <link rel="prefetch" as="document" href="../logofolio/">
       <link rel="prefetch" as="document" href="../photography/">
 
-      <script>
-         (function () {
-            const mode = sessionStorage.getItem("vt_mode");
-            const dir = sessionStorage.getItem("vt_dir");
-            if (mode) document.documentElement.dataset.vtMode = mode;
-            if (dir) document.documentElement.dataset.vtDir = dir;
-            sessionStorage.removeItem("vt_mode");
-            sessionStorage.removeItem("vt_dir");
-         })();
-      </script>
+      <script src="../../assets/js/sessionStorage.js"></script>
    </head>
 
    <body id="body" class="tt-boxed tt-smooth-scroll work photography" data-prev="../logofolio/"
@@ -918,21 +909,7 @@
       <script src="../../assets/js/photos.js"></script>
       <script src="../../assets/js/transition.js" defer></script>
       <script src="../../assets/js/preloadThumbs.js"></script>
-      <script>
-         window.addEventListener("load", () => {
-            const run = () =>
-               preloadThumbs({
-                  baseUrl: "../photography/photos/th/",
-                  from: 1,
-                  to: 59,
-                  concurrency: 6,
-                  onProgress: (l, t) => console.log(`Preload thumbs: ${l}/${t}`),
-               });
-
-            if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 2000 });
-            else setTimeout(run, 400);
-         });
-      </script>
+      <script src="../../assets/js/preloadPhotos.js"></script>
    </body>
 
 </html>
